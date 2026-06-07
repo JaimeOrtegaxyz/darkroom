@@ -1,0 +1,40 @@
+# The Darkroom — configuration (spec 4.7)
+# Copy to config.toml and edit. Everything here has a sensible default;
+# CLI flags override this file. The *loaded filter* is not configured here —
+# it's device state, chosen with the buttons (or --filter) and persisted in
+# <data_dir>/state.json.
+
+# data_dir = "data"
+
+# --- card source (spec 4.3) ---
+# Fixed dev folder standing in for the card (otherwise watch_roots is used):
+# card_path = "sandbox/fakecard"
+# Roots watched for mounts containing a DCIM folder:
+# watch_roots = ["/Volumes"]                    # macOS default
+# watch_roots = ["/media/pi"]                   # Raspberry Pi OS
+
+# --- gallery (spec 4.5) ---
+# gallery_port = 8000
+
+# --- transform seam (spec 4.4 / 1.10) ---
+# backend = "mock"            # "mock" (no network/key) or "openai"
+# workers = 2                 # parallel transforms
+# openai_model = "gpt-image-1"
+# openai_size = "auto"        # or "1024x1024", "1536x1024", "1024x1536"
+# api_key_env = "OPENAI_API_KEY"
+# max_upload_px = 1536        # long edge sent to the API
+# mock_delay_s = 2.5          # fake latency, keeps the choreography honest
+# Extra form fields passed straight to the images/edits call, e.g.:
+# [openai_extra]
+# quality = "low"             # cheaper + faster while experimenting
+# input_fidelity = "high"     # better face preservation
+
+# --- behavior ---
+# single_filter_mode = false  # true = party mode: MENU skipped (spec 1.4)
+# default_filter = "turn-to-cheese"
+# error_return_s = 6.0
+
+# --- safelight (spec 3.4): override any phase's pattern ---
+# [safelight.developing]
+# period_s = 5.0
+# max = 0.7

@@ -1,0 +1,250 @@
+<!doctype html>
+<!-- The Darkroom gallery (spec 1.8 / 4.5). One page, no app, no login.
+     Pending tiles show the original faint + blurred — the latent image in
+     the tray — and the transformed print sharpens in over it when ready. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0c0a09">
+<title>Darkroom</title>
+<style>
+  :root {
+    --bg: #0c0a09;
+    --panel: #18120f;
+    --text: #d9d2cc;
+    --dim: #8a7f78;
+    --red: #ff3b24;
+    --red-deep: #b01c10;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 max(14px, env(safe-area-inset-left)) env(safe-area-inset-bottom);
+  }
+
+  header {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding: 20px 2px 14px;
+    position: sticky; top: 0; z-index: 2;
+    background: linear-gradient(to bottom, var(--bg) 75%, transparent);
+  }
+  .wordmark {
+    font-size: 13px; font-weight: 600; letter-spacing: .42em; color: var(--red);
+    text-transform: uppercase; white-space: nowrap; text-shadow: 0 0 18px rgba(255,59,36,.35);
+  }
+  .status {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12.5px; color: var(--dim);
+    font-variant-numeric: tabular-nums; /* progress counter must not jiggle */
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%; flex: none;
+    background: #3a322e;
+    transition-property: background, box-shadow; transition-duration: .4s;
+  }
+  /* The page's pulse mirrors the device safelight: 4s breathing while developing. */
+  .developing .dot { background: var(--red); animation: breathe 4s ease-in-out infinite; }
+  .done-state .dot { background: var(--red); box-shadow: 0 0 10px rgba(255,59,36,.6); }
+  .error-state .dot { background: #ffb020; }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 2px rgba(255,59,36,.2); opacity: .55; }
+    50%      { box-shadow: 0 0 14px rgba(255,59,36,.85); opacity: 1; }
+  }
+
+  #grid {
+    display: grid; gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding-bottom: 28px;
+  }
+  @media (min-width: 700px) { #grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
+
+  .tile {
+    position: relative; aspect-ratio: 1; overflow: hidden;
+    border-radius: 12px;
+    background: var(--panel);
+    /* layered shadow + 1px pure-white outline for image depth on dark */
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08),
+                0 2px 6px rgba(0,0,0,.45),
+                0 8px 24px rgba(0,0,0,.35);
+    -webkit-tap-highlight-color: transparent;
+    transition-property: scale, opacity, filter;
+    transition-duration: .35s;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+  .tile.done { cursor: pointer; }
+  .tile.done:active { scale: 0.96; }
+
+  /* enter: new tiles develop into the grid */
+  .tile.enter { opacity: 0; scale: .96; filter: blur(4px); }
+
+  .tile img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    transition-property: opacity, filter; transition-duration: .9s;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+  /* latent original: dim, soft, red-washed while developing */
+  .tile .orig { opacity: .28; filter: blur(5px) sepia(.6) hue-rotate(-25deg) saturate(2.2) brightness(.7); }
+  .tile .out  { opacity: 0; filter: blur(4px); }
+  .tile.done .out { opacity: 1; filter: blur(0); }
+  /* tap to compare: print lifts, original comes up clean */
+  .tile.done.compare .out  { opacity: 0; }
+  .tile.done.compare .orig { opacity: 1; filter: none; }
+
+  .chip {
+    position: absolute; left: 8px; bottom: 8px; z-index: 1;
+    padding: 3px 8px; border-radius: 4px; /* concentric: 12 outer − 8 inset */
+    font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
+    background: rgba(12,10,9,.72); color: var(--dim);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    opacity: 0; transition-property: opacity; transition-duration: .35s;
+    pointer-events: none;
+  }
+  .tile.pending .chip.state, .tile.working .chip.state { opacity: 1; color: #c4564a; }
+  .tile.working .chip.state { animation: chip-pulse 1.6s ease-in-out infinite; }
+  @keyframes chip-pulse { 50% { opacity: .45; } }
+  .tile.compare .chip.compare-label { opacity: 1; }
+  .tile.error .chip.state { opacity: 1; color: #ffb020; }
+
+  .tile.error { box-shadow: 0 0 0 1px rgba(255,176,32,.25), 0 2px 6px rgba(0,0,0,.45); }
+  .tile.error .orig { opacity: .15; }
+  .err-msg {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    padding: 14px; text-align: center; font-size: 12px; color: var(--dim);
+    text-wrap: pretty;
+  }
+
+  #empty {
+    grid-column: 1 / -1; padding: 64px 20px; text-align: center; color: var(--dim);
+    font-size: 14px; text-wrap: balance;
+  }
+  #empty .glyph { font-size: 26px; display: block; margin-bottom: 10px; opacity: .8; }
+
+  footer { padding: 0 2px 26px; font-size: 11.5px; color: #564d47; text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile, .tile img, .chip { transition-duration: 0s !important; }
+    .dot, .tile.working .chip.state { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wordmark">Darkroom</div>
+  <div class="status"><span class="dot"></span><span id="status-text">connecting…</span></div>
+</header>
+
+<main><div id="grid"><div id="empty"><span class="glyph">⏚</span>nothing developed yet — load a stock and insert a card</div></div></main>
+<footer>tap a photo to compare with the original</footer>
+
+<script>
+(() => {
+  const grid = document.getElementById("grid");
+  const statusText = document.getElementById("status-text");
+  const empty = document.getElementById("empty");
+  const tiles = new Map(); // id -> {el, status}
+
+  function setHeader(s) {
+    document.body.className =
+      s.state === "DEVELOPING" ? "developing" :
+      s.state === "DONE" ? "done-state" :
+      s.state === "ERROR" ? "error-state" : "";
+    let line = s.state === "DEVELOPING"
+      ? `developing · ${s.filter} · ${s.progress.done}/${s.progress.total}`
+      : s.state === "ERROR" ? `error — ${s.message || "see device"}`
+      : `${s.state.toLowerCase()} · stock: ${s.filter} · ${s.counts.done} developed`;
+    statusText.textContent = line;
+  }
+
+  function makeTile(item) {
+    const el = document.createElement("div");
+    el.dataset.id = item.id;
+    const orig = document.createElement("img");
+    orig.className = "orig"; orig.loading = "lazy"; orig.alt = item.name;
+    orig.src = item.orig_url;
+    const out = document.createElement("img");
+    out.className = "out"; out.alt = `${item.name} — ${item.filter}`;
+    const state = document.createElement("span");
+    state.className = "chip state";
+    const compareLabel = document.createElement("span");
+    compareLabel.className = "chip compare-label";
+    compareLabel.textContent = "original";
+    el.append(orig, out, state, compareLabel);
+    el.addEventListener("click", () => {
+      if (el.classList.contains("done")) el.classList.toggle("compare");
+    });
+    return el;
+  }
+
+  function applyStatus(el, item) {
+    el.className = "tile " + item.status;
+    const state = el.querySelector(".chip.state");
+    const out = el.querySelector(".out");
+    if (item.status === "pending") state.textContent = "queued";
+    if (item.status === "working") state.textContent = "developing…";
+    if (item.status === "error") {
+      state.textContent = "failed";
+      if (!el.querySelector(".err-msg")) {
+        const m = document.createElement("div");
+        m.className = "err-msg";
+        m.textContent = item.error || "transform failed";
+        el.appendChild(m);
+      }
+    }
+    if (item.status === "done" && item.out_url && !out.src) out.src = item.out_url;
+  }
+
+  function upsert(item, animate) {
+    empty.style.display = "none";
+    let t = tiles.get(item.id);
+    if (!t) {
+      const el = makeTile(item);
+      applyStatus(el, item);
+      if (animate) {
+        el.classList.add("enter");
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("enter")));
+      }
+      grid.prepend(el);
+      tiles.set(item.id, { el, status: item.status });
+    } else if (t.status !== item.status) {
+      applyStatus(t.el, item);
+      t.status = item.status;
+    }
+  }
+
+  async function loadAll() {
+    const r = await fetch("/api/items");
+    const { items } = await r.json();
+    if (!items.length) { empty.style.display = ""; return; }
+    // newest-first from the API; prepend in reverse so order lands right,
+    // with a soft stagger on first paint only
+    const fresh = items.filter(i => !tiles.has(i.id)).reverse();
+    fresh.forEach((item, n) => {
+      const el = makeTile(item);
+      applyStatus(el, item);
+      el.classList.add("enter");
+      setTimeout(() => el.classList.remove("enter"), 60 * Math.min(n, 12) + 30);
+      grid.prepend(el);
+      tiles.set(item.id, { el, status: item.status });
+    });
+    items.forEach(i => upsert(i, false));
+  }
+
+  function connect() {
+    const es = new EventSource("/events");
+    es.addEventListener("state", e => setHeader(JSON.parse(e.data)));
+    es.addEventListener("item", e => upsert(JSON.parse(e.data).item, true));
+    es.onopen = () => loadAll().catch(() => {});  // catch up after any disconnect
+    es.onerror = () => { statusText.textContent = "reconnecting…"; };
+  }
+
+  connect();
+})();
+</script>
+</body>
+</html>
