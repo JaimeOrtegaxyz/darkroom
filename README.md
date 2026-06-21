@@ -12,17 +12,30 @@ develops the photos through image generation, glowing red like a working
 darkroom, with results appearing live in a gallery on your phone.
 
 The idea comes from OpenAI's [imagegencam](https://github.com/openai/imagegencam),
-a build-your-own AI camera. The Darkroom goes for the same result — photos
-"developed" through image generation — but without building a camera from
-scratch: if you already own a cheap keychain camera, you just hand its SD card
-to the cube.
+a build-your-own AI camera that turns the photos it takes into generated images.
+
+My first instinct was to turn my keychain camera into one of those, but the guts
+gave me nothing to build on, and squeezing a Pi-class brain into that tiny shell
+meant essentially rebuilding the camera anyway. So I flipped the question: rather 
+than build a camera, what would a fun *companion* to one look like?
+
+Keychain cameras are having a moment, and a small separate box that "develops"
+whatever's on the card felt like a concept that could carry it.
 
 <p align="center">
   <img src="assets/concept-renders/mockup.png" alt="The Darkroom cube on an outdoor table next to a red keychain camera; the cube's screen shows a QR code reading SCAN TO VIEW." width="600">
 </p>
 
+So the flow goes like this: you slot a camera's SD card into the cube, and it
+runs each shot through the same kind of image generations; glowing red and
+stepping through a developing sequence the way a darkroom works a print. 
+
+When it's done, you scan the QR code on its screen and the developed photos 
+show up in a web gallery on your phone. Download those there. Simple.
+
 - **[DARKROOM_BUILD_SPEC.md](DARKROOM_BUILD_SPEC.md)** — concept + build spec. Part 1 is load-bearing; read it first.
 - **[BOM.md](BOM.md)** — parts list with purchase links and prices (local).
+- **[HARDWARE_PLAN.md](HARDWARE_PLAN.md)** — how it fits in the shell: cube sizing, component envelopes, and the main fit risk (the microSD slot).
 
 The whole app runs on a dev machine today with the hardware seams mocked:
 screen and safelight are log lines, buttons are the keyboard, and any folder
