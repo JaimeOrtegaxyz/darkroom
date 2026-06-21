@@ -46,3 +46,7 @@ stocks, `s` load one, `i` re-insert the card, `q` quit.
   `--backend openai`.
 
 All knobs are documented in `config.example.toml`. Results land in `data/`.
+
+## License
+
+[MIT](LICENSE) © Jaime Ortega
