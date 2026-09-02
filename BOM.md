@@ -37,11 +37,13 @@ research below is unaffected; these notes pin down *what* to build with.
    slot is exposed through the shell wall, or swap to a small internal reader / USB breakout
    that allows it. Treat the specific reader as provisional until the shell is designed.
 
-### Form factor intent (recorded 2026-06-07)
+### Form factor intent (recorded 2026-06-07, updated 2026-09-02 to the CAD)
 
-Self-contained rectangular prism (cube-ish). Roughly: screen on the front; buttons, card
-slot and USB-C each on a side. Sides may be shared — including with the screen face — as
-the design develops, but everything is integrated into the body's faces; nothing hangs off
+Self-contained hard cube, 80 × 84 × 80 mm (see [`HARDWARE_PLAN.md`](HARDWARE_PLAN.md) and
+[`GEOMETRY.md`](GEOMETRY.md)). Everything lives on the graphite front plate: screen high and
+centred, microSD slot bottom-left in a keyhole recess, four round buttons in a 2 × 2 grid
+bottom-right (Up, Select red / Down, Power), four flush screws. USB-C and the PiSugar's power
+pinhole are on the rear wall. Everything is integrated into the body's faces; nothing hangs off
 it. Somewhat larger than minimal is acceptable if integration requires it; the untethered
 glow and handheld pass-around quality (spec 1.2 / 1.5) stay non-negotiable.
 
@@ -56,8 +58,8 @@ glow and handheld pass-around quality (spec 1.2 / 1.5) stay non-negotiable.
 | 2 | **PiSugar 3 (for Pi Zero, 1200 mAh)** | [pisugar.com official store](https://www.pisugar.com/products/pisugar-3-raspberry-pi-zero-battery) direct, or [Amazon.com.mx listing B09MJ8SCGD](https://www.amazon.com.mx/Pisugar-Bater%C3%ADa-litio-para-1200/dp/B09MJ8SCGD) | $39.99 USD (~$699 MXN) from official store; Amazon.com.mx listing exists (verify price in cart) | In stock (96 units on Tindie; Amazon.com.mx listing present) | **LiPo battery — see Ordering Notes.** Contains 1200 mAh LiPo. Includes power button and I2C battery gauge. Ships from China via official store; check Amazon.com.mx listing for domestic fulfillment. |
 | 3A | **Display — HAT path (optional bench bring-up only — see Design decisions #2): Waveshare 1.3inch LCD HAT** (240×240 IPS, ST7789, SPI, 1× joystick + 3× user buttons built in) | [PiShop.us](https://www.pishop.us/product/240x240-1-3inch-ips-lcd-display-hat-for-raspberry-pi/) — $15.95 USD (~$279 MXN) + international shipping | ~$279–320 MXN (product) + ~$15–25 USD shipping to MX | **In stock** at PiShop.us | Covers display AND all 3 buttons in one part. Eliminates need for line items 4a/4b. Verify Amazon.com.mx availability before ordering from US. LCSC has it at $8.42 USD but minimum-qty shipping adds cost. |
 | 3B | **Display — discrete path (CHOSEN — see Design decisions #2): 1.3" ST7789 SPI bare module** (240×240 IPS) | [Geek Factory MX](https://www.geekfactory.mx/producto/display-lcd-de-1-3-pulgadas-spi-st7789/) | **$170 MXN** | In stock (domestic) | No buttons or joystick — requires separate buttons (line item 4). Available domestically; ~3 day shipping anywhere in Mexico. |
-| 4 | **3× momentary push buttons** (12×12 mm tactile, PCB mount) — only needed for discrete path | [Geek Factory MX — push button estándar](https://www.geekfactory.mx/producto/push-button-estandar-4-pines-pulsador-boton/) | $1 MXN each = **$3 MXN** for 3 | In stock | 4-pin, 1.6×1.6×0.7 cm tactile switch. Add colorful caps from the [330ohms push button kit at Cyberpuerta](https://www.cyberpuerta.mx/Por-Marca/330OHMS/330Ohms-Kit-de-Push-Button-con-Capucha.html) if desired for nicer feel. |
-| 5 | **WS2812B NeoPixel LED stick (8 LEDs)** | [Geek Factory MX — NeoPixel Stick 8×WS2812](https://www.geekfactory.mx/producto/neopixel-stick-8-x-5050-leds-rgb-ws2812/) | **$39 MXN** | In stock (domestic) | 8 individually addressable LEDs, WS2812B/SK6812 compatible. Entire stick controlled via 1 GPIO. Only 1–3 LEDs will be used for the safelight; extra ones stay off or can serve future purposes. |
+| 4 | **4× momentary push buttons** (12×12 mm tactile, PCB mount) — only needed for discrete path; Up, Select, Down, Power in the plate's 2 × 2 grid | [Geek Factory MX — push button estándar](https://www.geekfactory.mx/producto/push-button-estandar-4-pines-pulsador-boton/) | $1 MXN each = **$4 MXN** for 4 | In stock | 4-pin, 1.6×1.6×0.7 cm tactile switch. Add colorful caps from the [330ohms push button kit at Cyberpuerta](https://www.cyberpuerta.mx/Por-Marca/330OHMS/330Ohms-Kit-de-Push-Button-con-Capucha.html) if desired for nicer feel. |
+| 5 | **WS2812B NeoPixel LED stick (8 LEDs)** | [Geek Factory MX — NeoPixel Stick 8×WS2812](https://www.geekfactory.mx/producto/neopixel-stick-8-x-5050-leds-rgb-ws2812/) | **$39 MXN** | In stock (domestic) | 8 individually addressable LEDs, WS2812B/SK6812 compatible. Entire stick controlled via 1 GPIO. Prototype part only: the enclosure uses two individual 5 mm pixels on the diffuser shelf (HARDWARE_PLAN.md, Safelight); the stick is for bench bring-up, or cut two pixels off it. |
 | 6 | **Micro-USB OTG microSD card reader** | [Steren USB-685 — Lector microSD/USB 3en1 OTG](https://www.steren.com.mx/lector-microsd-usb-3-en-1-otg.html) | **$74 MXN** (25% promo price; regular $99 MXN) | In stock (domestic) | Has micro-USB OTG plug — plugs directly into Pi Zero's OTG port. Also has USB-A and USB-C. Hundreds of Steren stores nationwide; same-day pickup possible. **Provisional: must end up embedded as a clean slot in the shell (Design decisions #6).** |
 | 7 | **MicroSD card 32 GB, A1** (for Pi OS) | [Steren — Kingston 32 GB U1/V10/A1](https://www.steren.com.mx/memoria-microsd-de-32-gb-kingston-clase-u1-v10-a1.html) | **~$170–200 MXN** (verify; Steren 64 GB A1 listed at $383 MXN; 32 GB variant on same page) | In stock (domestic, multiple Steren locations) | Kingston Canvas Select. A1 class is sufficient for Pi OS boot. Also widely available at Walmart, Liverpool, Elektra. |
 | 8 | **Translucent PETG filament, 1.75 mm, 1 kg** (natural/clear) | [Amazon.com.mx — Polymaker PolyLite PETG Transparente](https://www.amazon.com.mx/Polymaker-Filamento-transparente-impresoras-filamentos/dp/B09DKMCNMW) | **~$558 MXN** (based on search data; verify at checkout) | Available on Amazon.com.mx (verify before ordering) | PolyLite PETG transparent/natural is ideal — optically clear, decent light transmission. Print at 230–240°C nozzle / 70–80°C bed. Alternative: 3D Market MX at ~$890 MXN if Amazon listing is unavailable. |
@@ -157,13 +159,13 @@ glow and handheld pass-around quality (spec 1.2 / 1.5) stay non-negotiable.
 | + 40-pin header strip | Local shop | ~$20 |
 | PiSugar 3 | Amazon.com.mx / official store | ~$699 |
 | Geek Factory 1.3" ST7789 bare module | Geek Factory MX | $170 |
-| 3× tactile push buttons | Geek Factory MX | $3 |
+| 4× tactile push buttons | Geek Factory MX | $4 |
 | NeoPixel Stick 8× WS2812 | Geek Factory MX | $39 |
 | Steren OTG card reader | Steren | $74 |
 | Kingston 32 GB microSD A1 | Steren | ~$185 |
 | Polymaker PETG transparent 1 kg | Amazon.com.mx | ~$558 |
 | Misc (jumpers, standoffs, JST) | Geek Factory / Amazon.com.mx | ~$150 |
-| **DISCRETE PATH TOTAL** | | **~$2,327 MXN (~$133 USD)** |
+| **DISCRETE PATH TOTAL** | | **~$2,328 MXN (~$133 USD)** |
 
 > **The discrete path is the chosen build** (see Design decisions #2): cheaper, fully domestic, and it frees the face design. The HAT path remains listed only as an optional bench bring-up platform — buy it only if validating hardware before the shell exists is worth ~$385 MXN extra.
 
