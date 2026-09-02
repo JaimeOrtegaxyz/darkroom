@@ -4,7 +4,7 @@
 > for now. Sharing it in case someone finds it interesting.
 
 <p align="center">
-  <img src="assets/concept-renders/darkroom-technical-cube-v6-glow-plus.jpg" alt="Concept render of the Darkroom cube — a dark cube with a small screen reading FILM LOADED / CHEESE, three buttons, an SD-card slot and USB-C port, glowing red at the base." width="520">
+  <img src="cad/renders/A-hero-menu-4k.png" alt="Studio render of the Darkroom cube — a matte black cube with a small screen listing films, an SD-card slot and four round buttons, one red." width="600">
 </p>
 
 Companion appliance to a keychain camera: slot in the camera's SD card and it
@@ -23,7 +23,7 @@ Keychain cameras are having a moment, and a small separate box that "develops"
 whatever's on the card felt like a concept that could carry it.
 
 <p align="center">
-  <img src="assets/concept-renders/mockup.png" alt="The Darkroom cube on an outdoor table next to a red keychain camera; the cube's screen shows a QR code reading SCAN TO VIEW." width="600">
+  <img src="cad/renders/C-front-done-4k.png" alt="The Darkroom, front on: a roll developed, the screen shows a QR code reading SCAN TO VIEW." width="600">
 </p>
 
 So the flow goes like this: you slot a camera's SD card into the cube, and it
@@ -36,6 +36,7 @@ show up in a web gallery on your phone. Download those there. Simple.
 - **[DARKROOM_BUILD_SPEC.md](DARKROOM_BUILD_SPEC.md)** — concept + build spec. Part 1 is load-bearing; read it first.
 - **[BOM.md](BOM.md)** — parts list with purchase links and prices (local).
 - **[HARDWARE_PLAN.md](HARDWARE_PLAN.md)** — how it fits in the shell: cube sizing, component envelopes, and the main fit risk (the microSD slot).
+- **[GEOMETRY.md](GEOMETRY.md)** — form-factor numbers; pairs with the parametric OpenSCAD model in [`cad/`](cad/). Renders: Codex image tool from the CAD with the brief in [`cad/renders/PROMPTS.md`](cad/renders/PROMPTS.md), re-resolved at 4K with Nano Banana Pro.
 
 The whole app runs on a dev machine today with the hardware seams mocked:
 screen and safelight are log lines, buttons are the keyboard, and any folder
