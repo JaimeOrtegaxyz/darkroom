@@ -1,4 +1,4 @@
-# The Darkroom — Build Spec
+# Darkroom — Build Spec
 
 *A companion appliance to a keychain camera. You slot in the camera's SD card, and it transforms the photos with image generation while glowing red like a working darkroom. Results appear in a gallery on your phone.*
 
@@ -42,7 +42,7 @@ The reason the hybrid path won is **social, not technical.** A laptop running a 
 The mental model to hold onto:
 
 > The camera is the dumb-but-charming **capture** device.
-> The Darkroom is the dumb-but-charming **development** device.
+> Darkroom is the dumb-but-charming **development** device.
 > They rhyme. They are siblings.
 
 This is why the Darkroom should feel like a companion to the camera, not like a desk peripheral. Design decisions throughout (power, charging gesture, form, glow) flow from this sibling relationship. Whenever a choice is ambiguous, prefer the option that makes the two feel like a matched pair.

@@ -1,4 +1,4 @@
-# The Darkroom
+# Darkroom
 
 > **Very early idea.** The BOM is untested, and I most likely won't pursue this
 > for now. Sharing it in case someone finds it interesting.
@@ -23,7 +23,7 @@ Keychain cameras are having a moment, and a small separate box that "develops"
 whatever's on the card felt like a concept that could carry it.
 
 <p align="center">
-  <img src="cad/renders/C-front-done-4k.png" alt="The Darkroom, front on: a roll developed, the screen shows a QR code reading SCAN TO VIEW." width="600">
+  <img src="cad/renders/C-front-done-4k.png" alt="Darkroom, front on: a roll developed, the screen shows a QR code reading SCAN TO VIEW." width="600">
 </p>
 
 So the flow goes like this: you slot a camera's SD card into the cube, and it

@@ -1,8 +1,8 @@
-# The Darkroom — Bill of Materials (Mexico)
+# Darkroom — Bill of Materials (Mexico)
 
 **Researched:** 2026-06-07  
 **Exchange rate used:** 1 USD = 17.47 MXN (Banxico FIX rate, 2026-06-06)  
-**Scope:** Purchase-ready BOM for building one unit of The Darkroom — a Raspberry Pi Zero 2 W appliance in a translucent 3D-printed shell. Prices are in MXN where the retailer lists MXN; for international sources the USD price is given with approximate MXN conversion in parentheses. Stock status reflects the state of each listing at time of research; online inventory changes daily — verify before ordering.
+**Scope:** Purchase-ready BOM for building one Darkroom — a Raspberry Pi Zero 2 W appliance in a translucent 3D-printed shell. Prices are in MXN where the retailer lists MXN; for international sources the USD price is given with approximate MXN conversion in parentheses. Stock status reflects the state of each listing at time of research; online inventory changes daily — verify before ordering.
 
 ---
 

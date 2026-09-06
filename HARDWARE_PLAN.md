@@ -1,4 +1,4 @@
-# The Darkroom Hardware Plan
+# Darkroom Hardware Plan
 
 Reconciled with the form-factor model on 2026-09-02. The numbers here are the
 CAD's numbers: [`GEOMETRY.md`](GEOMETRY.md) is the written spec and
