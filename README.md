@@ -38,6 +38,18 @@ show up in a web gallery on your phone. Download those there. Simple.
 - **[HARDWARE_PLAN.md](HARDWARE_PLAN.md)** — how it fits in the shell: cube sizing, component envelopes, and the main fit risk (the microSD slot).
 - **[GEOMETRY.md](GEOMETRY.md)** — form-factor numbers; pairs with the parametric OpenSCAD model in [`cad/`](cad/). Renders: Codex image tool from the CAD with the brief in [`cad/renders/PROMPTS.md`](cad/renders/PROMPTS.md), re-resolved at 4K with Nano Banana Pro.
 
+<p align="center">
+  <img src="docs/assembly/exports/darkroom-assembly-sheet.svg" alt="Exploded technical illustration of the Darkroom cube drawn from the CAD: the loaded sled slides out of the open front of the one-piece body, the diffuser shelf and two-LED safelight lift off the sled, four screw heads sit in front of the plate; an assembled inset; and an electronics detail with the display, button caps, tact switches, microSD reader, Pi Zero 2 W, PiSugar 3 and safelight, numbered and keyed in a legend.">
+</p>
+
+How it goes together, drawn straight from the CAD: one body, one sled that carries
+everything, four screws. It's concept geometry, not a build guide; the card reader is a
+placeholder and the display/PiSugar fit is unverified. For a closer look, download
+[`docs/assembly/index.html`](docs/assembly/index.html) and open it in a browser: assembled,
+exploded and electronics views with part highlighting, offline in one file (GitHub only
+shows its source). PNG/PDF versions are in [`docs/assembly/exports`](docs/assembly/exports),
+and [evidence.md](docs/assembly/evidence.md) lists what is and isn't verified.
+
 The whole app runs on a dev machine today with the hardware seams mocked:
 screen and safelight are log lines, buttons are the keyboard, and any folder
 (or a real card mounted by the OS) is the SD card. Pi backends come later;

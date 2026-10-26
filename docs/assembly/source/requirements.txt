@@ -1,0 +1,10 @@
+# Rebuild + checks for docs/assembly (not needed to run the Darkroom app).
+# Versions are the ones the checked-in files were built with; nearby versions should work.
+numpy==2.5.4
+pillow==13.0.0      # PNG write, PDF-vs-PNG comparison in check.py
+reportlab==5.1.0    # vector PDF (invariant mode, base-14 Helvetica)
+pypdf==6.21.2       # check.py: PDF page size / text
+playwright==1.64.1  # PNG rasterisation + qa_browser.py; drives an existing Chrome/Chromium
+                    # (set CHROME_PATH); `playwright install` is not required
+# Optional: pdftoppm (Poppler) on PATH lets check.py compare each PDF raster with its PNG.
+# Optional, trusted machines only: OpenSCAD 2021.01+ for `build.py --export-meshes`.

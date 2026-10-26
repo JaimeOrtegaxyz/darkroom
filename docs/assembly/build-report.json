@@ -1,0 +1,2043 @@
+{
+ "cad": {
+  "path": "cad/darkroom.scad",
+  "sha256": "c453c06cdf736b43163624c89db0b2e971e0ed0d1609e440c42280c07b97864b"
+ },
+ "mesh_cache": {
+  "path": "docs/assembly/source/mesh-cache.json.gz",
+  "sha256": "1253b9b290e93c7a8398ac849b10087386e6c29c13b19099400932eaa56a3d64",
+  "producer": "per-module OpenSCAD STL exports from the 2026-10-25 drawing experiment (not re-exported on this host)",
+  "cad_sha256": "c453c06cdf736b43163624c89db0b2e971e0ed0d1609e440c42280c07b97864b",
+  "meshes": {
+   "controls": {
+    "module": "buttons()",
+    "stl_sha256": "16e768d892883e315370364ee78f9d5314259d73fbed0e35abdd935ccd7cff57",
+    "triangles": 5180
+   },
+   "darkroom-sled": {
+    "module": "sled()",
+    "stl_sha256": "61f0f84202b3d7064176d76d443a0af06dfe5c93cb05f5365d46c92d7bf36c94",
+    "triangles": 5654
+   },
+   "darkroom-sleeve": {
+    "module": "sleeve_solid()",
+    "stl_sha256": "f164339fa43015283130ff49df1a604310bea9edc3a9b40c97075777dcc40d94",
+    "triangles": 1500
+   },
+   "diffuser": {
+    "module": "diffuser()",
+    "stl_sha256": "6b15d266e3112431c9acfcb9198b9ce6d3c6277d4bf3783c0fa900ab6a2ff317",
+    "triangles": 192
+   },
+   "display": {
+    "module": "lcd_module()",
+    "stl_sha256": "7c1aa7ef032c89d0c115129926e41185062891b4624a3d4226d6da5f16183366",
+    "triangles": 44
+   },
+   "pi": {
+    "module": "pi_stack()",
+    "stl_sha256": "2a55dbaa36ff30b61c963735501d6fc68f3feb5199240a51c57e151fa4ad8312",
+    "triangles": 1340
+   },
+   "reader": {
+    "module": "reader_board()",
+    "stl_sha256": "e1735e64057fe6b9ba810d71b213c456805e53cbf90c26f5e5d26ba25ae4981e",
+    "triangles": 28
+   },
+   "safelight": {
+    "module": "safelight()",
+    "stl_sha256": "9bc9f397696aaa4221d6f572fe3a5f39fb8a70d135f5f9df66fc1881cac5272d",
+    "triangles": 2084
+   },
+   "screws": {
+    "module": "screws()",
+    "stl_sha256": "c2b57ee63bd43ea53368146d9ef15b87aa2aa7d94e18312d222b2df6d6a066ac",
+    "triangles": 592
+   }
+  }
+ },
+ "camera": {
+  "azimuth_deg": 35.0,
+  "elevation_deg": 28.0,
+  "projection": "orthographic"
+ },
+ "views": {
+  "exploded": {
+   "parts": [
+    "body",
+    "sled",
+    "screws",
+    "display",
+    "caps",
+    "switches",
+    "reader",
+    "pi",
+    "pisugar",
+    "diffuser",
+    "safelight"
+   ],
+   "offsets_mm": {
+    "body": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sled": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "screws": [
+     0.0,
+     -140.0,
+     0.0
+    ],
+    "display": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "caps": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "switches": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "reader": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "pi": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "pisugar": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "diffuser": [
+     0.0,
+     -114.0,
+     58.0
+    ],
+    "safelight": [
+     0.0,
+     -114.0,
+     58.0
+    ]
+   }
+  },
+  "assembled": {
+   "parts": [
+    "body",
+    "sled",
+    "screws",
+    "display",
+    "caps",
+    "switches",
+    "reader",
+    "pi",
+    "pisugar",
+    "diffuser",
+    "safelight"
+   ],
+   "offsets_mm": {
+    "body": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sled": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "screws": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "display": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "caps": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "switches": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reader": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "pi": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "pisugar": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "diffuser": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "safelight": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "electronics": {
+   "parts": [
+    "display",
+    "caps",
+    "switches",
+    "reader",
+    "pi",
+    "pisugar",
+    "safelight"
+   ],
+   "offsets_mm": {
+    "display": [
+     0.0,
+     -30.0,
+     6.0
+    ],
+    "caps": [
+     0.0,
+     -46.0,
+     -6.0
+    ],
+    "switches": [
+     0.0,
+     -30.0,
+     -6.0
+    ],
+    "reader": [
+     -6.0,
+     -30.0,
+     -4.0
+    ],
+    "pi": [
+     0.0,
+     24.0,
+     -8.0
+    ],
+    "pisugar": [
+     0.0,
+     24.0,
+     -26.0
+    ],
+    "safelight": [
+     10.0,
+     10.0,
+     26.0
+    ]
+   }
+  }
+ },
+ "panels": [
+  {
+   "panel": "sheet-exploded",
+   "view": "exploded",
+   "scale_px_per_mm": 3.19136,
+   "offsets_mm": {
+    "body": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sled": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "screws": [
+     0.0,
+     -140.0,
+     0.0
+    ],
+    "display": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "caps": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "switches": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "reader": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "pi": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "pisugar": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "diffuser": [
+     0.0,
+     -114.0,
+     58.0
+    ],
+    "safelight": [
+     0.0,
+     -114.0,
+     58.0
+    ]
+   },
+   "visible_area_px2": {
+    "body": 90173.8,
+    "sled": 59853.1,
+    "screws": 1004.3,
+    "display": 4458.3,
+    "caps": 2656.1,
+    "switches": 0.0,
+    "reader": 67.3,
+    "pi": 6802.9,
+    "pisugar": 4811.0,
+    "diffuser": 23448.8,
+    "safelight": 2534.1
+   },
+   "stats": {
+    "triangles": 16614,
+    "front_triangles": 10850,
+    "visible_segments": 2212,
+    "polylines": 257,
+    "isolated_specks_dropped": 173,
+    "fill_regions": 15,
+    "fill_loops": 42
+   }
+  },
+  {
+   "panel": "sheet-assembled",
+   "view": "assembled",
+   "scale_px_per_mm": 1.53006,
+   "offsets_mm": {
+    "body": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sled": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "screws": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "display": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "caps": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "switches": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reader": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "pi": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "pisugar": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "diffuser": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "safelight": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "visible_area_px2": {
+    "body": 14240.3,
+    "sled": 9555.4,
+    "screws": 170.6,
+    "display": 1029.8,
+    "caps": 608.4,
+    "switches": 0.0,
+    "reader": 15.6,
+    "pi": 0.0,
+    "pisugar": 0.0,
+    "diffuser": 0.0,
+    "safelight": 0.0
+   },
+   "stats": {
+    "triangles": 16614,
+    "front_triangles": 10850,
+    "visible_segments": 1098,
+    "polylines": 107,
+    "isolated_specks_dropped": 138,
+    "fill_regions": 7,
+    "fill_loops": 22
+   }
+  },
+  {
+   "panel": "sheet-electronics",
+   "view": "electronics",
+   "scale_px_per_mm": 4.71291,
+   "offsets_mm": {
+    "display": [
+     0.0,
+     -30.0,
+     6.0
+    ],
+    "caps": [
+     0.0,
+     -46.0,
+     -6.0
+    ],
+    "switches": [
+     0.0,
+     -30.0,
+     -6.0
+    ],
+    "reader": [
+     -6.0,
+     -30.0,
+     -4.0
+    ],
+    "pi": [
+     0.0,
+     24.0,
+     -8.0
+    ],
+    "pisugar": [
+     0.0,
+     24.0,
+     -26.0
+    ],
+    "safelight": [
+     10.0,
+     10.0,
+     26.0
+    ]
+   },
+   "visible_area_px2": {
+    "display": 26503.0,
+    "caps": 7853.8,
+    "switches": 14915.4,
+    "reader": 6518.0,
+    "pi": 29481.9,
+    "pisugar": 35603.6,
+    "safelight": 5534.1
+   },
+   "stats": {
+    "triangles": 8676,
+    "front_triangles": 6136,
+    "visible_segments": 1038,
+    "polylines": 128,
+    "isolated_specks_dropped": 47,
+    "fill_regions": 16,
+    "fill_loops": 27
+   }
+  },
+  {
+   "panel": "exploded",
+   "view": "exploded",
+   "scale_px_per_mm": 3.13904,
+   "offsets_mm": {
+    "body": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sled": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "screws": [
+     0.0,
+     -140.0,
+     0.0
+    ],
+    "display": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "caps": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "switches": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "reader": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "pi": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "pisugar": [
+     0.0,
+     -114.0,
+     0.0
+    ],
+    "diffuser": [
+     0.0,
+     -114.0,
+     58.0
+    ],
+    "safelight": [
+     0.0,
+     -114.0,
+     58.0
+    ]
+   },
+   "visible_area_px2": {
+    "body": 87230.6,
+    "sled": 57936.2,
+    "screws": 970.3,
+    "display": 4295.6,
+    "caps": 2571.6,
+    "switches": 0.0,
+    "reader": 64.8,
+    "pi": 6572.9,
+    "pisugar": 4650.9,
+    "diffuser": 22683.7,
+    "safelight": 2455.1
+   },
+   "stats": {
+    "triangles": 16614,
+    "front_triangles": 10850,
+    "visible_segments": 2197,
+    "polylines": 257,
+    "isolated_specks_dropped": 176,
+    "fill_regions": 15,
+    "fill_loops": 42
+   }
+  },
+  {
+   "panel": "assembled",
+   "view": "assembled",
+   "scale_px_per_mm": 4.55763,
+   "offsets_mm": {
+    "body": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sled": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "screws": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "display": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "caps": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "switches": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reader": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "pi": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "pisugar": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "diffuser": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "safelight": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "visible_area_px2": {
+    "body": 126596.4,
+    "sled": 84680.9,
+    "screws": 1510.0,
+    "display": 9073.8,
+    "caps": 5420.9,
+    "switches": 0.0,
+    "reader": 137.3,
+    "pi": 0.0,
+    "pisugar": 0.0,
+    "diffuser": 0.0,
+    "safelight": 0.0
+   },
+   "stats": {
+    "triangles": 16614,
+    "front_triangles": 10850,
+    "visible_segments": 1491,
+    "polylines": 156,
+    "isolated_specks_dropped": 118,
+    "fill_regions": 7,
+    "fill_loops": 22
+   }
+  },
+  {
+   "panel": "electronics",
+   "view": "electronics",
+   "scale_px_per_mm": 4.71291,
+   "offsets_mm": {
+    "display": [
+     0.0,
+     -30.0,
+     6.0
+    ],
+    "caps": [
+     0.0,
+     -46.0,
+     -6.0
+    ],
+    "switches": [
+     0.0,
+     -30.0,
+     -6.0
+    ],
+    "reader": [
+     -6.0,
+     -30.0,
+     -4.0
+    ],
+    "pi": [
+     0.0,
+     24.0,
+     -8.0
+    ],
+    "pisugar": [
+     0.0,
+     24.0,
+     -26.0
+    ],
+    "safelight": [
+     10.0,
+     10.0,
+     26.0
+    ]
+   },
+   "visible_area_px2": {
+    "display": 26503.0,
+    "caps": 7853.8,
+    "switches": 14915.4,
+    "reader": 6518.0,
+    "pi": 29481.9,
+    "pisugar": 35603.6,
+    "safelight": 5534.1
+   },
+   "stats": {
+    "triangles": 8676,
+    "front_triangles": 6136,
+    "visible_segments": 1038,
+    "polylines": 128,
+    "isolated_specks_dropped": 47,
+    "fill_regions": 16,
+    "fill_loops": 27
+   }
+  }
+ ],
+ "anchors": [
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "body.top",
+   "part": "body",
+   "feature": "top face",
+   "model_point_mm": [
+    49.6,
+    52.08,
+    80.0
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    764.04,
+    223.23
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0608,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "body.post",
+   "part": "body",
+   "feature": "top-right corner post",
+   "model_point_mm": [
+    70.9,
+    4.2,
+    75.1
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    732.08,
+    314.1
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0116,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "sled.bulkhead",
+   "part": "sled",
+   "feature": "rear bulkhead",
+   "model_point_mm": [
+    68.0,
+    78.7,
+    48.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    652.19,
+    436.45
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0144,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "diffuser.top",
+   "part": "diffuser",
+   "feature": "diffuser top",
+   "model_point_mm": [
+    24.0,
+    30.0,
+    35.2
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    58.0
+   ],
+   "screen_px": [
+    448.02,
+    331.04
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0719,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "safelight.led",
+   "part": "safelight",
+   "feature": "left LED",
+   "model_point_mm": [
+    27.0,
+    42.0,
+    44.7
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    58.0
+   ],
+   "screen_px": [
+    477.83,
+    292.13
+   ],
+   "own_part_fraction": 0.878,
+   "depth_delta_mm": 0.0075,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "display.glass",
+   "part": "display",
+   "feature": "glass",
+   "model_point_mm": [
+    46.0,
+    1.4,
+    61.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    453.18,
+    475.78
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0122,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "sled.plate",
+   "part": "sled",
+   "feature": "front plate face",
+   "model_point_mm": [
+    71.5,
+    0.0,
+    42.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    517.28,
+    552.95
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0342,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "screws.head",
+   "part": "screws",
+   "feature": "top-left screw head",
+   "model_point_mm": [
+    7.5,
+    0.02,
+    74.5
+   ],
+   "offset_mm": [
+    0.0,
+    -140.0,
+    0.0
+   ],
+   "screen_px": [
+    302.42,
+    438.26
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0364,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "sheet-exploded",
+   "anchor": "caps.select",
+   "part": "caps",
+   "feature": "Select cap (red)",
+   "model_point_mm": [
+    63.5,
+    -1.4,
+    27.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    493.81,
+    590.06
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0103,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "safelight.led",
+   "part": "safelight",
+   "feature": "left LED",
+   "model_point_mm": [
+    27.0,
+    42.0,
+    44.7
+   ],
+   "offset_mm": [
+    10.0,
+    10.0,
+    26.0
+   ],
+   "screen_px": [
+    628.6,
+    799.69
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0408,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "display.glass",
+   "part": "display",
+   "feature": "glass",
+   "model_point_mm": [
+    46.0,
+    1.4,
+    61.0
+   ],
+   "offset_mm": [
+    0.0,
+    -30.0,
+    6.0
+   ],
+   "screen_px": [
+    445.47,
+    972.59
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0162,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "display.pcb",
+   "part": "display",
+   "feature": "display PCB below the glass",
+   "model_point_mm": [
+    32.0,
+    4.0,
+    36.5
+   ],
+   "offset_mm": [
+    0.0,
+    -30.0,
+    6.0
+   ],
+   "screen_px": [
+    398.45,
+    1052.06
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0025,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "pi.header",
+   "part": "pi",
+   "feature": "2x20 header top",
+   "model_point_mm": [
+    47.5,
+    75.0,
+    33.2
+   ],
+   "offset_mm": [
+    0.0,
+    24.0,
+    -8.0
+   ],
+   "screen_px": [
+    796.19,
+    917.17
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0005,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "pi.pcb",
+   "part": "pi",
+   "feature": "Pi PCB",
+   "model_point_mm": [
+    13.5,
+    55.7,
+    24.7
+   ],
+   "offset_mm": [
+    0.0,
+    24.0,
+    -8.0
+   ],
+   "screen_px": [
+    612.75,
+    944.37
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0519,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "pisugar.body",
+   "part": "pisugar",
+   "feature": "PiSugar side",
+   "model_point_mm": [
+    72.5,
+    57.7,
+    12.3
+   ],
+   "offset_mm": [
+    0.0,
+    24.0,
+    -26.0
+   ],
+   "screen_px": [
+    845.94,
+    1142.12
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0302,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "caps.select",
+   "part": "caps",
+   "feature": "Select cap (red)",
+   "model_point_mm": [
+    63.5,
+    -1.4,
+    27.0
+   ],
+   "offset_mm": [
+    0.0,
+    -46.0,
+    -6.0
+   ],
+   "screen_px": [
+    462.21,
+    1220.29
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0077,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "switches.tact",
+   "part": "switches",
+   "feature": "top face, upper-left tact switch",
+   "model_point_mm": [
+    48.0,
+    7.65,
+    33.0
+   ],
+   "offset_mm": [
+    0.0,
+    -30.0,
+    -6.0
+   ],
+   "screen_px": [
+    470.08,
+    1130.25
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.034,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "sheet-electronics",
+   "anchor": "reader.socket",
+   "part": "reader",
+   "feature": "push-push socket",
+   "model_point_mm": [
+    26.5,
+    11.5,
+    28.1
+   ],
+   "offset_mm": [
+    -6.0,
+    -30.0,
+    -4.0
+   ],
+   "screen_px": [
+    374.32,
+    1100.44
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0232,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "body.top",
+   "part": "body",
+   "feature": "top face",
+   "model_point_mm": [
+    49.6,
+    52.08,
+    80.0
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    766.27,
+    201.93
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.082,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "body.post",
+   "part": "body",
+   "feature": "top-right corner post",
+   "model_point_mm": [
+    70.9,
+    4.2,
+    75.1
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    734.83,
+    291.31
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0258,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "sled.bulkhead",
+   "part": "sled",
+   "feature": "rear bulkhead",
+   "model_point_mm": [
+    68.0,
+    78.7,
+    48.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    656.25,
+    411.66
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0045,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "diffuser.top",
+   "part": "diffuser",
+   "feature": "diffuser top",
+   "model_point_mm": [
+    24.0,
+    30.0,
+    35.2
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    58.0
+   ],
+   "screen_px": [
+    455.43,
+    307.98
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0869,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "safelight.led",
+   "part": "safelight",
+   "feature": "left LED",
+   "model_point_mm": [
+    27.0,
+    42.0,
+    44.7
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    58.0
+   ],
+   "screen_px": [
+    484.75,
+    269.7
+   ],
+   "own_part_fraction": 0.98,
+   "depth_delta_mm": 0.0648,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "display.glass",
+   "part": "display",
+   "feature": "glass",
+   "model_point_mm": [
+    46.0,
+    1.4,
+    61.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    460.51,
+    450.35
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0282,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "sled.plate",
+   "part": "sled",
+   "feature": "front plate face",
+   "model_point_mm": [
+    71.5,
+    0.0,
+    42.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    523.56,
+    526.25
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0257,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "screws.head",
+   "part": "screws",
+   "feature": "top-left screw head",
+   "model_point_mm": [
+    7.5,
+    0.02,
+    74.5
+   ],
+   "offset_mm": [
+    0.0,
+    -140.0,
+    0.0
+   ],
+   "screen_px": [
+    312.21,
+    413.44
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0224,
+   "visible": true
+  },
+  {
+   "view": "exploded",
+   "panel": "exploded",
+   "anchor": "caps.select",
+   "part": "caps",
+   "feature": "Select cap (red)",
+   "model_point_mm": [
+    63.5,
+    -1.4,
+    27.0
+   ],
+   "offset_mm": [
+    0.0,
+    -114.0,
+    0.0
+   ],
+   "screen_px": [
+    500.47,
+    562.75
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0049,
+   "visible": true
+  },
+  {
+   "view": "assembled",
+   "panel": "assembled",
+   "anchor": "body.top",
+   "part": "body",
+   "feature": "top face",
+   "model_point_mm": [
+    49.6,
+    52.08,
+    80.0
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    662.19,
+    237.15
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0164,
+   "visible": true
+  },
+  {
+   "view": "assembled",
+   "panel": "assembled",
+   "anchor": "sled.plate",
+   "part": "sled",
+   "feature": "front plate face",
+   "model_point_mm": [
+    71.5,
+    0.0,
+    42.0
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    607.81,
+    508.22
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0189,
+   "visible": true
+  },
+  {
+   "view": "assembled",
+   "panel": "assembled",
+   "anchor": "screws.head",
+   "part": "screws",
+   "feature": "top-left screw head",
+   "model_point_mm": [
+    7.5,
+    0.02,
+    74.5
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    368.92,
+    298.86
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0171,
+   "visible": true
+  },
+  {
+   "view": "assembled",
+   "panel": "assembled",
+   "anchor": "display.glass",
+   "part": "display",
+   "feature": "glass",
+   "model_point_mm": [
+    46.0,
+    1.4,
+    61.0
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    516.27,
+    398.02
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0394,
+   "visible": true
+  },
+  {
+   "view": "assembled",
+   "panel": "assembled",
+   "anchor": "caps.select",
+   "part": "caps",
+   "feature": "Select cap (red)",
+   "model_point_mm": [
+    63.5,
+    -1.4,
+    27.0
+   ],
+   "offset_mm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "screen_px": [
+    574.28,
+    561.22
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0179,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "safelight.led",
+   "part": "safelight",
+   "feature": "left LED",
+   "model_point_mm": [
+    27.0,
+    42.0,
+    44.7
+   ],
+   "offset_mm": [
+    10.0,
+    10.0,
+    26.0
+   ],
+   "screen_px": [
+    628.6,
+    125.36
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0408,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "display.glass",
+   "part": "display",
+   "feature": "glass",
+   "model_point_mm": [
+    46.0,
+    1.4,
+    61.0
+   ],
+   "offset_mm": [
+    0.0,
+    -30.0,
+    6.0
+   ],
+   "screen_px": [
+    445.47,
+    298.26
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0162,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "display.pcb",
+   "part": "display",
+   "feature": "display PCB below the glass",
+   "model_point_mm": [
+    32.0,
+    4.0,
+    36.5
+   ],
+   "offset_mm": [
+    0.0,
+    -30.0,
+    6.0
+   ],
+   "screen_px": [
+    398.45,
+    377.73
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0025,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "pi.header",
+   "part": "pi",
+   "feature": "2x20 header top",
+   "model_point_mm": [
+    47.5,
+    75.0,
+    33.2
+   ],
+   "offset_mm": [
+    0.0,
+    24.0,
+    -8.0
+   ],
+   "screen_px": [
+    796.19,
+    242.83
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0005,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "pi.pcb",
+   "part": "pi",
+   "feature": "Pi PCB",
+   "model_point_mm": [
+    13.5,
+    55.7,
+    24.7
+   ],
+   "offset_mm": [
+    0.0,
+    24.0,
+    -8.0
+   ],
+   "screen_px": [
+    612.75,
+    270.04
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0519,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "pisugar.body",
+   "part": "pisugar",
+   "feature": "PiSugar side",
+   "model_point_mm": [
+    72.5,
+    57.7,
+    12.3
+   ],
+   "offset_mm": [
+    0.0,
+    24.0,
+    -26.0
+   ],
+   "screen_px": [
+    845.94,
+    467.79
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0302,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "caps.select",
+   "part": "caps",
+   "feature": "Select cap (red)",
+   "model_point_mm": [
+    63.5,
+    -1.4,
+    27.0
+   ],
+   "offset_mm": [
+    0.0,
+    -46.0,
+    -6.0
+   ],
+   "screen_px": [
+    462.21,
+    545.96
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0077,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "switches.tact",
+   "part": "switches",
+   "feature": "top face, upper-left tact switch",
+   "model_point_mm": [
+    48.0,
+    7.65,
+    33.0
+   ],
+   "offset_mm": [
+    0.0,
+    -30.0,
+    -6.0
+   ],
+   "screen_px": [
+    470.08,
+    455.92
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.034,
+   "visible": true
+  },
+  {
+   "view": "electronics",
+   "panel": "electronics",
+   "anchor": "reader.socket",
+   "part": "reader",
+   "feature": "push-push socket",
+   "model_point_mm": [
+    26.5,
+    11.5,
+    28.1
+   ],
+   "offset_mm": [
+    -6.0,
+    -30.0,
+    -4.0
+   ],
+   "screen_px": [
+    374.32,
+    426.11
+   ],
+   "own_part_fraction": 1.0,
+   "depth_delta_mm": 0.0232,
+   "visible": true
+  }
+ ],
+ "leader_crossings": {
+  "sheet-exploded": [],
+  "sheet-electronics": [],
+  "exploded": [],
+  "assembled": [],
+  "electronics": []
+ },
+ "label_boxes": {
+  "sheet": [
+   [
+    938,
+    209.63,
+    1017.96,
+    236.83
+   ],
+   [
+    938,
+    300.5,
+    1139.8,
+    327.7
+   ],
+   [
+    915.66,
+    422.85,
+    1164.0,
+    450.05
+   ],
+   [
+    76.7,
+    317.44,
+    262,
+    344.64
+   ],
+   [
+    50.39,
+    278.53,
+    262,
+    305.73
+   ],
+   [
+    85.15,
+    462.18,
+    262,
+    489.38
+   ],
+   [
+    41.91,
+    539.35,
+    262,
+    566.55
+   ],
+   [
+    39.51,
+    424.66,
+    262,
+    451.86
+   ],
+   [
+    61.68,
+    576.46,
+    262,
+    603.66
+   ],
+   [
+    50.39,
+    790.73,
+    262,
+    817.93
+   ],
+   [
+    85.15,
+    958.99,
+    262,
+    986.19
+   ],
+   [
+    112.43,
+    1038.46,
+    262,
+    1065.66
+   ],
+   [
+    938,
+    901.67,
+    1089.93,
+    928.87
+   ],
+   [
+    938,
+    932.67,
+    1079.05,
+    959.87
+   ],
+   [
+    938,
+    1128.52,
+    1064.97,
+    1155.72
+   ],
+   [
+    61.68,
+    1206.69,
+    262,
+    1233.89
+   ],
+   [
+    56.47,
+    1117.24,
+    262,
+    1144.44
+   ],
+   [
+    65.38,
+    1086.24,
+    262,
+    1113.44
+   ]
+  ],
+  "exploded": [
+   [
+    938,
+    188.33,
+    1017.96,
+    215.53
+   ],
+   [
+    938,
+    277.71,
+    1139.8,
+    304.91
+   ],
+   [
+    915.66,
+    398.06,
+    1164.0,
+    425.26
+   ],
+   [
+    76.7,
+    294.38,
+    262,
+    321.58
+   ],
+   [
+    50.39,
+    256.1,
+    262,
+    283.3
+   ],
+   [
+    85.15,
+    436.75,
+    262,
+    463.95
+   ],
+   [
+    41.91,
+    512.65,
+    262,
+    539.85
+   ],
+   [
+    39.51,
+    399.84,
+    262,
+    427.04
+   ],
+   [
+    61.68,
+    549.15,
+    262,
+    576.35
+   ]
+  ],
+  "assembled": [
+   [
+    938,
+    223.55,
+    1017.96,
+    250.75
+   ],
+   [
+    938,
+    494.62,
+    1158.09,
+    521.82
+   ],
+   [
+    39.51,
+    285.26,
+    262,
+    312.46
+   ],
+   [
+    85.15,
+    384.42,
+    262,
+    411.62
+   ],
+   [
+    938,
+    547.62,
+    1138.32,
+    574.82
+   ]
+  ],
+  "electronics": [
+   [
+    50.39,
+    114.4,
+    262,
+    141.6
+   ],
+   [
+    85.15,
+    284.66,
+    262,
+    311.86
+   ],
+   [
+    112.43,
+    364.13,
+    262,
+    391.33
+   ],
+   [
+    938,
+    227.34,
+    1089.93,
+    254.54
+   ],
+   [
+    938,
+    258.34,
+    1079.05,
+    285.54
+   ],
+   [
+    938,
+    454.19,
+    1064.97,
+    481.39
+   ],
+   [
+    61.68,
+    532.36,
+    262,
+    559.56
+   ],
+   [
+    56.47,
+    442.91,
+    262,
+    470.11
+   ],
+   [
+    65.38,
+    411.91,
+    262,
+    439.11
+   ]
+  ]
+ },
+ "outputs": {
+  "assembly-sheet": {
+   "svg": {
+    "path": "docs/assembly/exports/darkroom-assembly-sheet.svg",
+    "sha256": "e2a4cfb475431996d4545358d10d0b627b35221de0dfc085eb3ce29a10b20aea"
+   },
+   "pdf": {
+    "path": "docs/assembly/exports/darkroom-assembly-sheet.pdf",
+    "sha256": "b9143a1a6d69533df7f1eaf15c844367f4d8f1389dcf6a826957a7f00f7d782a"
+   },
+   "png": {
+    "path": "docs/assembly/exports/darkroom-assembly-sheet.png",
+    "sha256": "3e7f8c0f5324e13849f2dc4c43273ce94f0592b93868e4c183177a494373f12a"
+   },
+   "size_px": [
+    1200,
+    1708
+   ]
+  },
+  "exploded": {
+   "svg": {
+    "path": "docs/assembly/exports/darkroom-exploded.svg",
+    "sha256": "91fdc843eae8d5b45ce98bcc60e2e60b708116e1c007629fd9d529b95bb0b8f1"
+   },
+   "pdf": {
+    "path": "docs/assembly/exports/darkroom-exploded.pdf",
+    "sha256": "a74e6bca82bdfcc22fe8d872656730db84387c590a7c93ce794e4dd7f2f6dda3"
+   },
+   "png": {
+    "path": "docs/assembly/exports/darkroom-exploded.png",
+    "sha256": "bc6e1f7d122fa024ba0ca04a75fad0643c7f8b179bcf517b7ba476401c38aeab"
+   },
+   "size_px": [
+    1200,
+    1096
+   ]
+  },
+  "assembled": {
+   "svg": {
+    "path": "docs/assembly/exports/darkroom-assembled.svg",
+    "sha256": "91e7eaecbd888b5f7467ce73bab9bb4a9aba271107aa894ab3ab3fe0b696a0b2"
+   },
+   "pdf": {
+    "path": "docs/assembly/exports/darkroom-assembled.pdf",
+    "sha256": "de82dcffbce671e57dcaf6913da1b36f5136b6af5ff87170ae1ef71c331eef28"
+   },
+   "png": {
+    "path": "docs/assembly/exports/darkroom-assembled.png",
+    "sha256": "807efa356b4c9b6fbfe16f475776fb356ae730df534376059ed6aebaa0d1362b"
+   },
+   "size_px": [
+    1200,
+    1110
+   ]
+  },
+  "electronics": {
+   "svg": {
+    "path": "docs/assembly/exports/darkroom-electronics.svg",
+    "sha256": "1faaa85c7cdd941cbc9d6ba946f0ec486b1e08a1f299de92a1fb5ff4f5760624"
+   },
+   "pdf": {
+    "path": "docs/assembly/exports/darkroom-electronics.pdf",
+    "sha256": "e183a4531a881339a001477de95612688f70f8aa933eae77c861fb45e71c96c9"
+   },
+   "png": {
+    "path": "docs/assembly/exports/darkroom-electronics.png",
+    "sha256": "d047047f9979a0abe78a03e9d8d646a7f345968c0ba979d460d9151549a9af75"
+   },
+   "size_px": [
+    1200,
+    981
+   ]
+  },
+  "viewer": {
+   "path": "docs/assembly/index.html",
+   "sha256": "28fe1ea17c2aa20331b9e081ef6f67ca8f8aef6731bc4706fb423934c4214841"
+  }
+ }
+}

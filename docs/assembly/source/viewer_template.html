@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darkroom · Assembly viewer</title>
+<style>
+:root{--ink:#22252a;--soft:#5c616a;--line:#d5d7db;--paper:#fbfbfa;--panel:#ffffff;--accent:#c8473d;--focus:#2f6fd6}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+button{font:inherit;color:inherit}
+button:focus-visible,.scroller:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between;padding:20px 24px 12px;border-bottom:1px solid var(--line)}
+h1{margin:0;font:700 17px/1.2 Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.sub{margin:4px 0 0;color:var(--soft);font-size:14px;max-width:60ch}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;padding:8px 14px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0;min-height:calc(100vh - 90px)}
+.stage-col{padding:14px 18px 18px 24px;min-width:0}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+.toolbar .group{display:inline-flex;align-items:center;gap:6px}
+.toolbar .lbl{color:var(--soft);font-size:13px}
+.tool{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:6px 11px;cursor:pointer;min-width:36px}
+.tool:hover{border-color:#b9bcc2}
+.spacer{flex:1}
+.scroller{overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--paper);max-height:calc(100vh - 170px);overscroll-behavior:contain}
+.stage{position:relative;width:100%;container-type:inline-size;margin:0 auto}
+.stage svg{display:block;width:100%;height:auto}
+.stage svg .annotations{display:none}
+.stage svg .part,.stage svg .leader,.stage svg .axes{transition:opacity .15s}
+.has-focus svg .part:not(.is-on),.has-focus svg .leader:not(.is-on),.has-focus svg .axes:not(.is-on){opacity:.14}
+.callouts{position:absolute;inset:0;pointer-events:none}
+.callout{position:absolute;display:flex;align-items:center;gap:7px;pointer-events:auto;border:0;background:none;padding:2px 3px;cursor:pointer;
+  font:400 clamp(11px,1.32cqw,15px)/1 Helvetica,Arial,sans-serif;letter-spacing:.06em;color:var(--ink);white-space:nowrap;transform:translateY(-50%);border-radius:4px}
+.callout.L{transform:translate(-100%,-50%)}
+.callout .badge{flex:none;display:inline-grid;place-items:center;width:1.55em;height:1.55em;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:.92em;letter-spacing:0}
+.callout:hover .txt{text-decoration:underline}
+.has-focus .callout:not(.is-on){opacity:.28}
+.callout.is-on .badge{background:var(--accent)}
+.compact .callout .txt{display:none}
+.compact .callout{font-size:12px}
+.status{min-height:1.4em;margin:8px 2px 0;color:var(--soft);font-size:13px}
+aside{border-left:1px solid var(--line);padding:16px 20px 24px;background:var(--panel)}
+.legend-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+h2{margin:0;font:700 13px/1.2 Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+ol{list-style:none;margin:0;padding:0}
+.item{display:grid;grid-template-columns:24px 26px 1fr;gap:4px 8px;align-items:start;width:100%;text-align:left;border:1px solid transparent;background:none;border-radius:8px;padding:7px 8px;cursor:pointer}
+.item:hover{background:#f3f4f6}
+.item[aria-pressed="true"]{border-color:var(--ink);background:#f3f4f6}
+.item .num{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font:700 12px/1 Helvetica,Arial,sans-serif;margin-top:1px}
+.item[aria-pressed="true"] .num{background:var(--accent)}
+.sw{display:flex;gap:2px;margin-top:4px}
+.sw i{display:block;width:8px;height:14px;border:1px solid rgba(0,0,0,.45);border-radius:2px}
+.sw i:first-child{width:12px}
+.item b{display:block;font-weight:600}
+.item small{display:block;color:var(--soft);font-size:13px;line-height:1.35}
+.tag{display:inline-block;margin-left:6px;padding:0 5px;border-radius:4px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px;background:#f6e3c7;color:#6b4a12}
+.where{display:none;margin-left:6px;padding:0 5px;border-radius:4px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px;background:#e6e8ec;color:#454a52}
+.item[data-hidden="true"] .where{display:inline-block}
+.item[data-hidden="true"] b,.item[data-hidden="true"] .sw{opacity:.55}
+.dl-hint{color:var(--soft);font-size:12px}
+.hint{color:var(--soft);font-size:13px;margin:12px 2px 0}
+.note{color:var(--soft);font-size:13px;margin:12px 2px 0;padding-top:12px;border-top:1px solid var(--line)}
+@media (max-width:1100px){
+  .layout{grid-template-columns:1fr}
+  aside{border-left:0;border-top:1px solid var(--line)}
+  .stage-col{padding:12px}
+  .scroller{max-height:none}
+  .stage{min-width:640px}
+  .legend-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2px 8px}
+  .top{padding:16px 12px 10px}
+}
+@media (prefers-reduced-motion:reduce){.stage svg .part,.stage svg .leader{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Darkroom · Assembly</h1>
+    <p class="sub" id="subtitle"></p>
+  </div>
+  <div class="seg" role="group" aria-label="View" id="views"></div>
+</header>
+<main class="layout">
+  <section class="stage-col" aria-label="Drawing">
+    <div class="toolbar">
+      <span class="group" role="group" aria-label="Zoom">
+        <span class="lbl">Zoom</span>
+        <button class="tool" id="zoom-out" aria-label="Zoom out">−</button>
+        <button class="tool" id="zoom-fit">Fit</button>
+        <button class="tool" id="zoom-in" aria-label="Zoom in">+</button>
+      </span>
+      <span class="spacer"></span>
+      <span class="group" role="group" aria-label="Download the current view">
+        <span class="lbl">Download view</span>
+        <button class="tool" data-fmt="svg">SVG</button>
+        <button class="tool" data-fmt="png">PNG</button>
+        <button class="tool" data-fmt="pdf">PDF</button>
+        <span class="dl-hint">clean drawing, no highlight</span>
+      </span>
+    </div>
+    <div class="scroller" id="scroller" tabindex="0" aria-label="Drawing; scroll to pan when zoomed">
+      <div class="stage" id="stage">
+        <div id="host"></div>
+        <div class="callouts" id="callouts"></div>
+      </div>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+  <aside aria-label="Components">
+    <div class="legend-head"><h2>Components</h2><button class="tool" id="reset">Reset</button></div>
+    <ol class="legend-list" id="legend"></ol>
+    <p class="hint">Select a part (click, or Tab then Enter) to highlight it; arrow keys move through the list; Esc resets. A part that is hidden in the current view opens the view where it can be seen.</p>
+    <p class="note" id="note"></p>
+  </aside>
+</main>
+<script>
+"use strict";
+const DATA = /*__DATA__*/null;
+const ORDER = ["assembled", "exploded", "electronics"];
+const state = { view: "exploded", focus: null, zoom: 1 };
+const $ = (id) => document.getElementById(id);
+const host = $("host"), stage = $("stage"), callouts = $("callouts"), legend = $("legend");
+
+function el(tag, attrs, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+  }
+  for (const k of kids) n.append(k);
+  return n;
+}
+
+function buildChrome() {
+  for (const key of ORDER) {
+    const b = el("button", { type: "button", id: "view-" + key, "aria-pressed": "false", text: DATA.views[key].title });
+    b.addEventListener("click", () => setView(key));
+    $("views").append(b);
+  }
+  for (const p of DATA.parts) {
+    const sw = el("span", { class: "sw", "aria-hidden": "true" });
+    for (const c of p.tints.slice(0, 3)) { const i = el("i"); i.style.background = c; sw.append(i); }
+    const name = el("b", { text: p.name });
+    if (p.status !== "cad") name.append(el("span", { class: "tag", text: p.status === "placeholder" ? "placeholder" : "unverified" }));
+    name.append(el("span", { class: "where", text: "hidden here" }));
+    const b = el("button", { type: "button", class: "item", "data-part": p.key, "aria-pressed": "false" },
+      el("span", { class: "num", text: String(p.num), "aria-hidden": "true" }), sw,
+      el("span", {}, name, el("small", { text: p.note })));
+    b.setAttribute("aria-label", `${p.num}. ${p.name}. ${p.note}`);
+    b.addEventListener("click", () => toggleFocus(p.key));
+    b.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const items = [...legend.querySelectorAll(".item")];
+      const i = items.indexOf(b) + (e.key === "ArrowDown" ? 1 : -1);
+      if (items[i]) { items[i].focus(); e.preventDefault(); }
+    });
+    legend.append(el("li", {}, b));
+  }
+  $("note").textContent = DATA.note;
+  for (const b of document.querySelectorAll("[data-fmt]")) {
+    b.addEventListener("click", () => download(state.view, b.dataset.fmt));
+  }
+  $("reset").addEventListener("click", () => { setFocus(null); setZoom(1); });
+  $("zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.4));
+  $("zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.4));
+  $("zoom-fit").addEventListener("click", () => setZoom(1));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setFocus(null); });
+  new ResizeObserver(() => stage.classList.toggle("compact", stage.clientWidth < 780)).observe(stage);
+}
+
+function setView(key) {
+  state.view = key;
+  const v = DATA.views[key];
+  host.innerHTML = v.svg;
+  const svg = host.querySelector("svg");
+  svg.removeAttribute("width");
+  svg.removeAttribute("height");
+  svg.setAttribute("viewBox", v.stage.join(" "));
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  stage.style.aspectRatio = `${v.stage[2]} / ${v.stage[3]}`;
+  callouts.replaceChildren();
+  for (const c of v.callouts) {
+    const x = c.lane === "L" ? c.box[2] : c.box[0];
+    const b = el("button", { type: "button", class: "callout " + c.lane, "data-part": c.part, "data-callout": c.key,
+      "aria-label": `${c.num}. ${c.label.toLowerCase()}` },
+      el("span", { class: "badge", text: String(c.num) }), el("span", { class: "txt", text: c.label }));
+    b.style.left = ((x - v.stage[0]) / v.stage[2] * 100) + "%";
+    b.style.top = ((c.y - v.stage[1]) / v.stage[3] * 100) + "%";
+    b.addEventListener("click", () => toggleFocus(c.part));
+    callouts.append(b);
+  }
+  for (const k of ORDER) $("view-" + k).setAttribute("aria-pressed", String(k === key));
+  for (const item of legend.querySelectorAll(".item")) {
+    const shown = v.shown.includes(item.dataset.part);
+    item.dataset.hidden = String(!shown);
+    item.querySelector(".where").textContent = v.parts.includes(item.dataset.part) ? "hidden here" : "not in this view";
+    const p = DATA.parts.find((q) => q.key === item.dataset.part);
+    item.setAttribute("aria-label", `${p.num}. ${p.name}. ${p.note}` + (shown ? "" : `. Not visible in the ${v.title} view; selecting it opens ${DATA.views[bestView(p.key)].title}.`));
+  }
+  $("subtitle").textContent = v.subtitle;
+  document.title = `Darkroom · ${v.title} · Assembly viewer`;
+  setFocus(state.focus && v.shown.includes(state.focus) ? state.focus : null);
+}
+
+// Views where a part can actually be seen, best first (electronics for the boards, else exploded).
+function bestView(part) {
+  for (const k of ["electronics", "exploded", "assembled"]) if (DATA.views[k].shown.includes(part)) return k;
+  return null;
+}
+
+function toggleFocus(part) {
+  const v = DATA.views[state.view];
+  if (v.shown.includes(part)) { setFocus(state.focus === part ? null : part); return; }
+  const target = bestView(part), p = DATA.parts.find((q) => q.key === part);
+  const why = v.parts.includes(part) ? `is hidden inside the assembly in the ${v.title} view` : `is not part of the ${v.title} view`;
+  setView(target);
+  setFocus(part);
+  $("status").textContent = `${p.name} ${why}; showing it in the ${DATA.views[target].title} view.`;
+}
+
+function setFocus(part) {
+  state.focus = part;
+  stage.classList.toggle("has-focus", !!part);
+  for (const n of stage.querySelectorAll("[data-part]")) n.classList.toggle("is-on", n.dataset.part === part);
+  for (const item of legend.querySelectorAll(".item")) item.setAttribute("aria-pressed", String(item.dataset.part === part));
+  const p = DATA.parts.find((q) => q.key === part);
+  $("status").textContent = p ? `Highlighting ${p.num}. ${p.name}` : "";
+}
+
+function setZoom(z) {
+  state.zoom = Math.min(4, Math.max(1, z));
+  stage.style.width = (state.zoom * 100) + "%";
+}
+
+function bytes(b64) {
+  const s = atob(b64), out = new Uint8Array(s.length);
+  for (let i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
+  return out;
+}
+
+// The view is passed in by the click handler, so a download always matches the view that was
+// showing when it was requested, even if the view changes while the file is being prepared.
+async function download(viewKey, fmt) {
+  const v = DATA.views[viewKey];
+  const name = `darkroom-${viewKey}.${fmt}`;
+  $("status").textContent = `Preparing ${name}…`;
+  await new Promise((r) => setTimeout(r, 0));
+  const blob = fmt === "svg" ? new Blob([v.svg], { type: "image/svg+xml" })
+    : new Blob([bytes(v[fmt])], { type: fmt === "png" ? "image/png" : "application/pdf" });
+  const a = el("a", { href: URL.createObjectURL(blob), download: name });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+  $("status").textContent = `Saved ${name}`;
+}
+
+buildChrome();
+setView(state.view);
+</script>
+</body>
+</html>
